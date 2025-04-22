@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- to make the entire page scroll -->
+<!-- nest scroll view for smoother scrolling -->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <!--  main layout  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!--  Mic image that updates on recording status  -->
+        <ImageView
+            android:id="@+id/micImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/mic_close" />
+
+        <!--  Status text that updates on recording/Playing  -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Status will appear here"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- to display audio progress -->
+        <com.masoudss.lib.WaveformSeekBar
+            android:id="@+id/waveformView"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="48dp"
+            app:wave_padding_top="2dp"
+            app:wave_padding_Bottom="2dp"
+            app:wave_padding_left="2dp"
+            app:wave_padding_right="2dp"
+            app:wave_gap="4dp"
+            app:wave_width="3dp"
+            app:wave_gravity="center"
+            app:wave_corner_radius="2dp"
+            app:wave_background_color="@color/grey"
+            app:wave_progress_color="@color/colorPrimary" />
+
+        <!--  Play/Stop saved recording button  -->
+        <ImageView
+            android:id="@+id/playStopButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waveformView" />
+
+
+        <!--  Start/Stop recording button  -->
+        <Button
+            android:id="@+id/startStopRecordingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Recording"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playStopButton" />
+
+        <!-- to display list of saved recordings -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recordingsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            tools:listitem="@layout/item_audio_recording"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
